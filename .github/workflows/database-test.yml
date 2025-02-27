@@ -1,4 +1,4 @@
-name: Database Setup Pipeline
+name: database test
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "Waiting for DB to be ready..."
           ORACLE_HEALTHCHECK_CMD="docker exec oracle-db-${{ matrix.tag }} bash -c '/opt/oracle/checkDBStatus.sh'"
-          until $ORACLE_HEALTHCHECK_CMD | grep -q "DATABASE IS READY TO USE"; do
+          until docker exec oracle-db-${{ matrix.tag }} bash -c '/opt/oracle/checkDBStatus.sh'; do
             sleep 10
           done
       
