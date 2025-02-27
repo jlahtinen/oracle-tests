@@ -39,7 +39,7 @@ jobs:
             id NUMBER PRIMARY KEY,
             name VARCHAR2(100) NOT NULL
           );
-          CREATE UNIQUE INDEX test_table_name_idx ON test_table(name);
+          CREATE UNIQUE INDEX name_unique ON test_table(name);
           ALTER TABLE test_table ADD CONSTRAINT name_unique UNIQUE(name);
           EXIT;
           EOF
